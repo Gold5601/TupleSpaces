@@ -79,8 +79,7 @@ public class CommandProcessor {
         // get the tuple
         String tuple = split[1];
 
-        // put the tuple
-        System.out.println("TODO: implement put command");
+        clientService.put(tuple);
 
     }
 
@@ -95,7 +94,6 @@ public class CommandProcessor {
         String tuple = split[1];
 
         // read the tuple
-        System.out.println("TODO: implement read command");
     }
 
 
@@ -110,7 +108,7 @@ public class CommandProcessor {
         String tuple = split[1];
 
         // take the tuple
-        System.out.println("TODO: implement take command");
+        clientService.take(tuple);
     }
 
     private void getTupleSpacesState(String[] split){

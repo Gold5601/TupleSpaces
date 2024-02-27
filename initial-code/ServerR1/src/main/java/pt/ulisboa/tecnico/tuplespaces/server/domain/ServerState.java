@@ -12,7 +12,7 @@ public class ServerState {
 
   }
 
-  public void put(String tuple) {
+  public synchronized void put(String tuple) {
     tuples.add(tuple);
   }
 
@@ -25,16 +25,18 @@ public class ServerState {
     return null;
   }
 
-  public String read(String pattern) {
+  public synchronized String read(String pattern) {
     return getMatchingTuple(pattern);
   }
 
-  public String take(String pattern) {
-    // TODO
-    return null;
+  public synchronized String take(String pattern) {
+    String tuple = getMatchingTuple(pattern);
+    System.out.println(tuple);
+    tuples.remove(tuple);
+    return tuple;
   }
 
-  public List<String> getTupleSpacesState() {
+  public synchronized List<String> getTupleSpacesState() {
     // TODO
     return null;
   }
