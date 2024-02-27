@@ -11,6 +11,7 @@ public class TupleImpl extends TupleSpacesGrpc.TupleSpacesImplBase {
 
     private final ServerState serverState = new ServerState();
 
+    @Override
     public void put(PutRequest request, StreamObserver<PutResponse> responseObserver){
 
             String newTuple = request.getNewTuple();
@@ -20,6 +21,7 @@ public class TupleImpl extends TupleSpacesGrpc.TupleSpacesImplBase {
             responseObserver.onCompleted();
     }
 
+    @Override
     public void take(TakeRequest request, StreamObserver<TakeResponse> responseObserver){
 
         String searchPattern = request.getSearchPattern();

@@ -14,6 +14,7 @@ public class ServerState {
 
   public synchronized void put(String tuple) {
     tuples.add(tuple);
+    notifyAll();
   }
 
   private String getMatchingTuple(String pattern) {
@@ -31,7 +32,15 @@ public class ServerState {
 
   public synchronized String take(String pattern) {
     String tuple = getMatchingTuple(pattern);
-    System.out.println(tuple);
+
+    while(tuple == null){
+      try{
+        wait();
+      } catch (InterruptedException e) {
+        throw new RuntimeException(e);
+      }
+      tuple = getMatchingTuple(pattern);
+    }
     tuples.remove(tuple);
     return tuple;
   }
